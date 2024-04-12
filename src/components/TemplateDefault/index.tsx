@@ -38,6 +38,7 @@ const MainContent = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1em 2em;
 `
 
 const AsideContent = styled.div`
