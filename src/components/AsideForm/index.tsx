@@ -7,7 +7,7 @@ export default function AsideForm() {
     const [taskTitle, setTaskTitle] = useState("");
     const [taskDescription, setTaskDescription] = useState("");
 
-    async function handleTaskSubmit(e) {
+    async function handleTaskSubmit(e: HTMLFormElement) {
         e.preventDefault()
         await apiRequest.post("/tasks/", {
             title: taskTitle,
