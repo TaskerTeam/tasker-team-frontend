@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
 import { useState } from "react";
-import { apiRequest } from "../../utils/axios.ts"; // Importe a instância do axios
+import { postTask } from "../../services/api.tsx";
 
 export default function AsideForm() {
     const [taskTitle, setTaskTitle] = useState("");
     const [taskDescription, setTaskDescription] = useState("");
 
     async function handleTaskSubmit(e: HTMLFormElement) {
-        e.preventDefault()
-        await apiRequest.post("/tasks/", {
+        e.preventDefault();
+        await postTask({
             title: taskTitle,
             description: taskDescription,
-            date: "2026-05-20 13:30:00",
+            date: new Date().toString(),
         });
     }
 

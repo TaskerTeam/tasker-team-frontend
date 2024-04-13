@@ -11,9 +11,27 @@ export async function getNotificationsList() {
     }
 }
 
-export async function postTask(data) {
+interface postTaskData {
+    title: string
+    description: string
+    date: string
+}
+export async function getListTask() {
     try {
-        const res = await apiRequest.post('/notifications')
+        const res = await apiRequest.get("/tasks/");
+        return res.data
+    } catch(_) {
+        return []
+    }
+}
+
+export async function postTask(data: postTaskData) {
+    try {
+        const res = await apiRequest.post("/tasks/", {
+            title: data.title,
+            description: data.title,
+            date: new Date(),
+        });
         return res.data
     } catch(_) {
         return []
