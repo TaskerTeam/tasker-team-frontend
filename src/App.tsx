@@ -4,14 +4,57 @@ import TemplateDefault from "./components/TemplateDefault";
 import VetorEdit from "/vetor_edit.svg";
 import VetorDelete from "/vetor_delete.svg";
 import Woman from "/woman.png";
+import { getListTask, postTaskData } from "./services/api";
+import { useEffect, useState } from "react";
 
 function App() {
+    const [taskList, setTaskList] = useState<{ tasks: postTaskData[] }>({
+        tasks: [],
+    });
+
+    async function getNotifications() {
+        const tasks = await getListTask();
+        setTaskList(tasks);
+    }
+
+    useEffect(() => {
+        getNotifications();
+    }, []);
+
     return (
         <TemplateDefault asideChildren={<AsideForm />}>
             <MainContentContainer>
                 <StatusContainer>
                     <Status>
                         <TitleStatus>Pendentes</TitleStatus>
+                        {taskList.tasks.map((task) => (
+                            <TaskCard>
+                                <Task>
+                                    <TitleTask title={task.title}>
+                                        {task.description}
+                                    </TitleTask>
+                                    <ActionsTask>
+                                        <Button title="editar_tarefa">
+                                            <img
+                                                src={VetorEdit}
+                                                alt="editar_tarefa"
+                                                width={16}
+                                                height={16}
+                                            />
+                                        </Button>
+                                        <Button title="deletar_tarefa">
+                                            <img
+                                                src={VetorDelete}
+                                                alt="deletar_tarefa"
+                                                width={16}
+                                                height={16}
+                                            />
+                                        </Button>
+                                    </ActionsTask>
+                                </Task>
+                                <img src={Woman} alt="" title="foto_usuario" />
+                            </TaskCard>
+                        ))}
                     </Status>
 
                     <Status>
@@ -20,34 +63,6 @@ function App() {
 
                     <Status>
                         <TitleStatus>Concluído</TitleStatus>
-
-                        <TaskCard>
-                            <Task>
-                                <TitleTask title="titulo_completo_da_tarefa">
-                                    Tarefa com um nome extremamente grande e
-                                    nada a ver!
-                                </TitleTask>
-                                <ActionsTask>
-                                    <Button href="" title="editar_tarefa">
-                                        <img
-                                            src={VetorEdit}
-                                            alt="editar_tarefa"
-                                            width={16}
-                                            height={16}
-                                        />
-                                    </Button>
-                                    <Button href="" title="deletar_tarefa">
-                                        <img
-                                            src={VetorDelete}
-                                            alt="deletar_tarefa"
-                                            width={16}
-                                            height={16}
-                                        />
-                                    </Button>
-                                </ActionsTask>
-                            </Task>
-                            <img src={Woman} alt="" title="foto_usuario" />
-                        </TaskCard>
                     </Status>
                 </StatusContainer>
             </MainContentContainer>

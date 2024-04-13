@@ -11,7 +11,7 @@ export async function getNotificationsList() {
     }
 }
 
-interface postTaskData {
+export interface postTaskData {
     title: string
     description: string
     date: string
