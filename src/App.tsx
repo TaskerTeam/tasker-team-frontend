@@ -9,7 +9,6 @@ function App() {
   return (
     <TemplateDefault asideChildren={<AsideForm/>}>
       <MainContentContainer>
-        <MainContent>
           <StatusContainer> 
 
             <Status>
@@ -45,7 +44,6 @@ function App() {
             </Status>
 
           </StatusContainer>
-        </MainContent>
       </MainContentContainer>
     </TemplateDefault>
   )
@@ -111,14 +109,14 @@ const StatusContainer = styled.div `
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5em;
   max-width: 100%;
-  max-height: 500px;
-  height: 500px;
+  height: 80vh;
   overflow-x: auto;
   overflow-y: auto;
 `;
 
 const MainContent = styled.div `
   max-width: 100%;
+  height: 100%;
 
   @media screen and (max-width: 1380px) {
     max-width: 100%;
@@ -128,8 +126,8 @@ const MainContent = styled.div `
 
 const MainContentContainer = styled.div `
   display: flex;
-  align-items: center;
-
+  align-items: end;
+  height: 100%;
 `;
 
 export default App
