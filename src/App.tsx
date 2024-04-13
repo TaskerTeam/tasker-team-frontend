@@ -1,133 +1,140 @@
-import styled from 'styled-components'
-import AsideForm from './components/AsideForm'
-import TemplateDefault from './components/TemplateDefault'
-import VetorEdit from '/vetor_edit.svg'
-import VetorDelete from '/vetor_delete.svg'
-import Woman from '/woman.png'
+import styled from "styled-components";
+import AsideForm from "./components/AsideForm";
+import TemplateDefault from "./components/TemplateDefault";
+import VetorEdit from "/vetor_edit.svg";
+import VetorDelete from "/vetor_delete.svg";
+import Woman from "/woman.png";
 
 function App() {
-  return (
-    <TemplateDefault asideChildren={<AsideForm/>}>
-      <MainContentContainer>
-          <StatusContainer> 
+    return (
+        <TemplateDefault asideChildren={<AsideForm />}>
+            <MainContentContainer>
+                <StatusContainer>
+                    <Status>
+                        <TitleStatus>Pendentes</TitleStatus>
+                    </Status>
 
-            <Status>
+                    <Status>
+                        <TitleStatus>Em andamento</TitleStatus>
+                    </Status>
 
-              <TitleStatus>Pendentes</TitleStatus>
+                    <Status>
+                        <TitleStatus>Concluído</TitleStatus>
 
-            </Status>
-
-            <Status>
-
-              <TitleStatus>Em andamento</TitleStatus>
-              
-            </Status>
-
-            <Status>
-
-              <TitleStatus>Concluído</TitleStatus>
-
-              <TaskCard>
-                <Task>
-                  <TitleTask title="titulo_completo_da_tarefa">Tarefa com um nome extremamente grande e nada a ver!</TitleTask>
-                  <ActionsTask>
-                    <EditLink href="" title='editar_tarefa'>
-                      <ImageTasks src={VetorEdit} alt="editar_tarefa" />
-                    </EditLink>
-                    <EditLink href="" title='deletar_tarefa'>
-                      <ImageTasks src={VetorDelete} alt="deletar_tarefa" />
-                    </EditLink>
-                  </ActionsTask>
-                </Task>
-                <ImageUser src={Woman} alt="" title='foto_usuario'/>
-              </TaskCard>
-            </Status>
-
-          </StatusContainer>
-      </MainContentContainer>
-    </TemplateDefault>
-  )
+                        <TaskCard>
+                            <Task>
+                                <TitleTask title="titulo_completo_da_tarefa">
+                                    Tarefa com um nome extremamente grande e
+                                    nada a ver!
+                                </TitleTask>
+                                <ActionsTask>
+                                    <Button href="" title="editar_tarefa">
+                                        <img
+                                            src={VetorEdit}
+                                            alt="editar_tarefa"
+                                            width={16}
+                                            height={16}
+                                        />
+                                    </Button>
+                                    <Button href="" title="deletar_tarefa">
+                                        <img
+                                            src={VetorDelete}
+                                            alt="deletar_tarefa"
+                                            width={16}
+                                            height={16}
+                                        />
+                                    </Button>
+                                </ActionsTask>
+                            </Task>
+                            <img src={Woman} alt="" title="foto_usuario" />
+                        </TaskCard>
+                    </Status>
+                </StatusContainer>
+            </MainContentContainer>
+        </TemplateDefault>
+    );
 }
 
-const ImageUser = styled.img `
-
+const TitleStatus = styled.div`
+    font-weight: bold;
 `;
 
-const ImageTasks = styled.img `
-
+const Button = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    padding: 2px;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: 1px solid #000000a2;
+    aspect-ratio: 1/1;
 `;
 
-const EditLink = styled.a `
-
+const ActionsTask = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 8px;
 `;
 
-const TitleStatus = styled.div `
-  font-weight: bold;
+const TitleTask = styled.p`
+    max-width: 20ch;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis; /* exibe reticências (...) quando o texto é cortado */
+    white-space: nowrap; /* impede que o texto seja quebrado em várias linhas */
 `;
 
-const ActionsTask = styled.div `
-
+const Task = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
 `;
 
-const TitleTask = styled.p `
-  max-width: 20ch;
-  font-weight: 600;
-  overflow: hidden;
-  text-overflow: ellipsis; /* exibe reticências (...) quando o texto é cortado */
-  white-space: nowrap; /* impede que o texto seja quebrado em várias linhas */
-`;
-
-const Task = styled.div `
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  
-`;
-
-const TaskCard = styled.div `
-  display: flex;
-  align-items: center;
-  width: 300px;
-  background-color: #fff;
-  justify-content: space-evenly;
-  padding: 1em 0em;
-  max-width: 100%;
-`;
-
-const Status = styled.div `
-  background-color: #F9F9F9;
-  padding: 1em;
-  border-radius: 0.2em;
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  width: 300px;
-`;
-
-const StatusContainer = styled.div `
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5em;
-  max-width: 100%;
-  height: 80vh;
-  overflow-x: auto;
-  overflow-y: auto;
-`;
-
-const MainContent = styled.div `
-  max-width: 100%;
-  height: 100%;
-
-  @media screen and (max-width: 1380px) {
+const TaskCard = styled.div`
+    display: flex;
+    align-items: center;
+    width: 300px;
+    background-color: #fff;
+    justify-content: space-evenly;
+    padding: 1em 0em;
     max-width: 100%;
-  }
-
 `;
 
-const MainContentContainer = styled.div `
-  display: flex;
-  align-items: end;
-  height: 100%;
+const Status = styled.div`
+    background-color: #f9f9f9;
+    padding: 1em;
+    border-radius: 0.2em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 300px;
 `;
 
-export default App
+const StatusContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5em;
+    max-width: 100%;
+    height: 80vh;
+    overflow-x: auto;
+    overflow-y: auto;
+`;
+
+const MainContent = styled.div`
+    max-width: 100%;
+    height: 100%;
+
+    @media screen and (max-width: 1380px) {
+        max-width: 100%;
+    }
+`;
+
+const MainContentContainer = styled.div`
+    display: flex;
+    align-items: end;
+    height: 100%;
+`;
+
+export default App;
