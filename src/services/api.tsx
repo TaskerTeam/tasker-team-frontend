@@ -10,3 +10,12 @@ export async function getNotificationsList() {
         return []
     }
 }
+
+export async function postTask(data) {
+    try {
+        const res = await apiRequest.post('/notifications')
+        return res.data
+    } catch(_) {
+        return []
+    }
+}
