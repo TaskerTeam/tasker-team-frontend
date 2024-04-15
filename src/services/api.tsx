@@ -12,6 +12,7 @@ export async function getNotificationsList() {
 }
 
 export interface postTaskData {
+    taskId: number
     title: string
     description: string
     date: string
@@ -27,11 +28,21 @@ export async function getListTask() {
 
 export async function postTask(data: postTaskData) {
     try {
+        const date = new Date()
         const res = await apiRequest.post("/tasks/", {
             title: data.title,
             description: data.title,
-            date: new Date(),
+            date: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} 1:00:00`,
         });
+        return res.data
+    } catch(_) {
+        return []
+    }
+}
+
+export async function deleteTask(id: number) {
+    try {
+        const res = await apiRequest.delete(`/tasks/${id}`);
         return res.data
     } catch(_) {
         return []

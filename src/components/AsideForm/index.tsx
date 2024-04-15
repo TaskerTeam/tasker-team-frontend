@@ -3,17 +3,19 @@ import styled from "styled-components";
 import { useState } from "react";
 import { postTask } from "../../services/api.tsx";
 
-export default function AsideForm() {
+export default function AsideForm({refreshTrigger}: {refreshTrigger: () => void }) {
     const [taskTitle, setTaskTitle] = useState("");
     const [taskDescription, setTaskDescription] = useState("");
 
     async function handleTaskSubmit(e: HTMLFormElement) {
         e.preventDefault();
         await postTask({
+            taskId: 0,
             title: taskTitle,
             description: taskDescription,
             date: new Date().toString(),
         });
+        refreshTrigger()
     }
 
     return (
